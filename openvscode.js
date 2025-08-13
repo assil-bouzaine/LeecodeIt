@@ -1,10 +1,17 @@
-// openvscode.js
-import * as fs from 'fs' ;
-import * as path from 'path' ;
-import { exec } from 'child_process' ;
-import * as os from 'os' ;
+import { getSnippet } from './getSnippet.js'
+import * as fs from 'fs';
+import * as path from 'path';
+import { exec } from 'child_process';
+import * as os from 'os';
 
-function openvscode(file_name) {
+async function openvscode(file_name, lang) {
+  let extension = null
+  const snippet = await getSnippet(file_name, lang);
+  switch (lang) {
+    case 'python': extension = 'py'; break;
+    case 'typescript': extension = 'ts'; break;
+    default: console.log('langage not supported yet!!');
+  }
   if (!file_name) {
     console.error("❌ Please provide a file name inside the function call.");
     process.exit(1);
@@ -12,7 +19,7 @@ function openvscode(file_name) {
 
   const desktopPath = path.join(os.homedir(), "Desktop");
   const folderPath = path.join(desktopPath, "leetcodeProblems");
-  const filePath = path.join(folderPath, `${file_name}.py`);
+  const filePath = path.join(folderPath, `${file_name}.${extension}`);
 
   // Ensure folder exists
   if (!fs.existsSync(folderPath)) {
@@ -22,7 +29,7 @@ function openvscode(file_name) {
 
   // Create the file if it doesn't exist
   if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, "# Start coding here\n");
+    fs.writeFileSync(filePath, snippet);
     console.log(`📝 Created file: ${filePath}`);
   } else {
     console.log(`⚠ File already exists: ${filePath}`);
@@ -43,4 +50,4 @@ function openvscode(file_name) {
 }
 
 // Call your function here
-openvscode("TwoSum"); // change this name to whatever you want
+openvscode("two-sum", "typescript"); // change this name to whatever you want
