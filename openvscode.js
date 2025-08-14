@@ -50,4 +50,4 @@ export async function openvscode(file_name, lang) {
 }
 
 // Call your function here
-openvscode("two-sum", "typescript"); // change this name to whatever you want
+//openvscode("two-sum", "typescript"); // change this name to whatever you want
