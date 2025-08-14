@@ -55,7 +55,7 @@ async function main() {
       .then(problem => {
         console.log(renderProblemDescription(problem.content));
         openBrave(problem.titleSlug);
-        openvscode(problem.titleSlug, 'typescript');
+        openvscode(problem.titleSlug, 'python');
       })
       .catch(console.error)
 

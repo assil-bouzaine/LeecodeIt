@@ -102,6 +102,6 @@ export async function openBrave(problemSlug) {
 }
 
 // Example usage:
-openBrave("two-sum");
+//openBrave("two-sum");
 // openBrave("add-two-numbers");
 
