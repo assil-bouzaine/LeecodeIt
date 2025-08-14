@@ -4,7 +4,7 @@ import * as path from 'path';
 import { exec } from 'child_process';
 import * as os from 'os';
 
-async function openvscode(file_name, lang) {
+export async function openvscode(file_name, lang) {
   let extension = null
   const snippet = await getSnippet(file_name, lang);
   switch (lang) {

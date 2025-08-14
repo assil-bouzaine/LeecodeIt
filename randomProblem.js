@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import { listSolvedProblems } from './solvedProblems.js';
 import LeetCode from 'leetcode-query';
 
-export async function getRandomUnsolvedEasyProblemFull() {
+export async function getRandomProblem() {
   const allEasyProblems = await getEasyProblems();
   const solvedProblems = await listSolvedProblems();
 
@@ -30,9 +30,9 @@ export async function getRandomUnsolvedEasyProblemFull() {
 
   return problemDetails;
 }
-getRandomUnsolvedEasyProblemFull()
-  .then(problem => {
-    console.log(chalk.bold.underline(problem.title));
-    console.log(renderProblemDescription(problem.content));
-  })
-  .catch(console.error)
+//getRandomProblem()
+// .then(problem => {
+//  console.log(chalk.bold.underline(problem.titleSlug));
+// console.log(renderProblemDescription(problem.content));
+//  })
+// .catch(console.error)

@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import * as dotenv from 'dotenv';
 import { generateCode } from './generateCode.js';
 dotenv.config();
-async function sendEmail(email) {
+export async function sendEmail() {
   // 1. Create a transporter object using SMTP transport
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -17,7 +17,7 @@ async function sendEmail(email) {
   // 2. Define email options
   const mailOptions = {
     from: process.env.USER_EMAIL,  // sender address
-    to: email,                    // list of receivers (comma-separated)
+    to: process.env.EMAIL_RECIEVER,                    // list of receivers (comma-separated)
     subject: 'Verification Code',              // Subject line
     text: generateCode().toString()// plain text body
     // html: '<b>This is a test email sent using Nodemailer!</b>' // optionally HTML body
@@ -26,8 +26,6 @@ async function sendEmail(email) {
   // 3. Send the email
   let info = await transporter.sendMail(mailOptions);
 
-  console.log('Message sent: %s', info.messageId);
 }
 
-sendEmail("farahzayani82@gmail.com").catch(console.error);
 
